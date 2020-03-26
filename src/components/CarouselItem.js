@@ -1,11 +1,15 @@
 import React from 'react';
 
 function CarouselItem(props) {
-    const {item = {}} = props;
-    const { previewURL, tags} = item;
+  const { item = {} } = props;
+  const { previewURL, tags } = item;
 
-
-    return (<div><img src={previewURL}/></div>)
+  return (
+    <div className="carousel-item">
+      <img src={previewURL} alt={tags} />
+      <p>{tags}</p>
+    </div>
+  );
 }
 
 export default CarouselItem;
