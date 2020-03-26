@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { searchImages } from '../utils/api';
 import CarouselItem from './CarouselItem';
+import CarouselButton from './CarouselButton';
 
 function Carousel(props) {
-  const { numberOfItems = 6 , title = 'Carousel test'} = props;
+  const { numberOfItems = 6, title = 'Carousel test' } = props;
 
   const [currentItem, setCurrentItem] = useState(0);
   const [items, setItems] = useState();
@@ -18,6 +19,24 @@ function Carousel(props) {
     []
   );
 
+  const handleNext = () => {
+    let nextItem = Math.min(currentItem + 1, numberOfItems);
+    if (nextItem === numberOfItems) {
+      nextItem = 0;
+    }
+
+    setCurrentItem(nextItem);
+  };
+
+  const handlePrevious = () => {
+    let previousItem = Math.max(currentItem - 1, 0);
+    if (previousItem === 0) {
+      previousItem = numberOfItems - 1;
+    }
+
+    setCurrentItem(previousItem);
+  };
+
   const noItems = () => {
     return <div>Fetching items....</div>;
   };
@@ -27,12 +46,14 @@ function Carousel(props) {
   return (
     <div className="carousel-wrapper">
       <h2 className="carousel-title">{title}</h2>
-      <div className="carousel">
-        {items.map(item => (
-          <CarouselItem item={item} />
-        ))}
-      </div>
-      <div className="action-bar"></div>
+
+      <ul className="carousel">
+        <CarouselButton direction="previous" handleClick={handlePrevious} />
+        {items.map((item, index) => {
+          return <CarouselItem item={item} index={index} currentItem={currentItem} />;
+        })}
+        <CarouselButton direction="next" handleClick={handleNext} />
+      </ul>
     </div>
   );
 }

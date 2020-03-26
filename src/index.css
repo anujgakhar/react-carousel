@@ -17,15 +17,31 @@ body {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 .carousel-wrapper .carousel {
   display: flex;
   flex-wrap: nowrap;
-  padding: 1rem;
+  padding: 0;
+  margin: 0;
   justify-content: center;
-  overflow: hidden;
-  min-width: 200px;
+  align-items: center;
+  position: relative;
+}
+
+.carousel-button {
+  cursor: pointer;
+}
+
+.carousel-button.previous {
+  position: absolute;
+  left: 10px;
+}
+
+.carousel-button.next {
+  position: absolute;
+  right: 10px;
 }
 
 .carousel .carousel-item {
@@ -33,10 +49,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 200px;
-  height: 200px;
-  margin: 10px ;
+  min-height: 200px;
+  width: 100%;
+  margin: 1rem;
+  padding: 1rem;
   flex-direction: column;
+  transition: transform 300ms ease 100ms;
 }
 
 .carousel-wrapper .carousel-title {
@@ -46,6 +64,11 @@ body {
   width: 100%;
   padding: 0.2rem;
 }
+  
+
+.carousel-button.previous img {
+  transform: scaleX(-1);
+}
 
 .carousel-item + .carousel-item {
   margin-left: 1rem;
@@ -53,13 +76,35 @@ body {
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 1224px) {
   .carousel {
-    width: 200px;
+    width: 300px;
+  }
+
+  .carousel-item.not-current {
+    display: none;
   }
 }
 
 /* Desktops and laptops ----------- */
-@media only screen  and (min-width : 1224px) {
+ @media only screen  and (min-width : 1224px) {
   .carousel {
-    width: 100%;
+    width: 300px;
+  }
+
+  .carousel-item.not-current {
+    display: none;
+  }
+}  
+
+/* @media (min-width: 30em) {
+  .carousel {
+    left: -50%;
+    transform: translateX(50%);
   }
 }
+
+@media (min-width: 40em) {
+  .carousel {
+    left: -33.33333%;
+    transform: translateX(33.33333%);
+  }
+} */
