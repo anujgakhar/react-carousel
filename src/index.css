@@ -87,24 +87,6 @@ body {
 /* Desktops and laptops ----------- */
  @media only screen  and (min-width : 1224px) {
   .carousel {
-    width: 300px;
-  }
-
-  .carousel-item.not-current {
-    display: none;
+    width: 100%;
   }
 }  
-
-/* @media (min-width: 30em) {
-  .carousel {
-    left: -50%;
-    transform: translateX(50%);
-  }
-}
-
-@media (min-width: 40em) {
-  .carousel {
-    left: -33.33333%;
-    transform: translateX(33.33333%);
-  }
-} */
