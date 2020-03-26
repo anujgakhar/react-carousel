@@ -8,18 +8,52 @@ body {
 .App {
   text-align: center;
   margin: 0 auto;
-
 }
 
-.carousel {
+.carousel-wrapper {
+  border: 1px solid grey;
+  margin: 0 auto;
   margin-top: 5rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width:auto;
+  align-items: center;
+}
+
+.carousel-wrapper .carousel {
   display: flex;
   flex-wrap: nowrap;
+  padding: 1rem;
   justify-content: center;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar; 
+  max-width: 1000px;
+}
+
+.carousel .carousel-item {
+  flex: 0 0 auto; 
+}
+
+.carousel-wrapper .carousel-title {
+  background-color: grey;
+  color: white;
+  margin: 0;
+  width: 100%;
 }
 
 .carousel-item + .carousel-item {
   margin-left: 1rem;
 }
 
+@media(max-width: 1049px){
+  .carousel {
+    width: 500px;
+  }
+  
+}
+@media(max-width: 800px){
+  .carousel {
+    width: 150px;
+  }
+}
