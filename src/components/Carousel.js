@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {searchImages} from '../utils/api';
+import CarouselItem from './CarouselItem';
+
+
 
 function Carousel (props) {
     const {numberOfItems = 6} = props;
@@ -7,20 +10,25 @@ function Carousel (props) {
     const [currentItem, setCurrentItem] = useState(0);
     const [items, setItems] = useState();
 
+
     useEffect(() => {
-        // get images if not passed in
-        if (items) return;
-
         searchImages({per_page:numberOfItems}).then((response) => {
-            setItems(response.hits);
+            setItems(response.data.hits);
         });
-
     }, 
     // eslint-disable-next-line
     [])
 
+    const noItems = () => {
+        return (<div>Fetching items....</div>)
+    }
+
+    if (!items) return noItems();
+
     return (
-        <div>This is the carousel</div>
+        <div className="carousel">
+            {items.map(item => <CarouselItem item={item} />)}
+        </div>
     )
 
 }
